@@ -21,7 +21,7 @@ import com.CRUD.prueba.excepcion.noexcepcion;
 import com.CRUD.prueba.modelo.ACTIVIDAD;
 import com.CRUD.prueba.repositorio.actividadrepositorio;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/")
 
@@ -31,19 +31,19 @@ public class actividadcontrolador {
 	private actividadrepositorio actividadrepositorio;
 	
 
-	@GetMapping("/ACTIVIDAD")
-	public List<ACTIVIDAD> getAllACTIVIDAD(){
+	@GetMapping("/actividad")
+	public List<ACTIVIDAD> getAllactividad(){
 		return actividadrepositorio.findAll();
 	}		
 	
 
-	@PostMapping("/ACTIVIDAD")
+	@PostMapping("/actividad")
 	public ACTIVIDAD createACTIVIDAD(@RequestBody ACTIVIDAD ACTIVIDAD) {
 		return actividadrepositorio.save(ACTIVIDAD);
 	}
 	
 	
-	@GetMapping("/ACTIVIDAD/{id}")
+	@GetMapping("/actividad/{id}")
 	public ResponseEntity<ACTIVIDAD> getACTIVIDADById(@PathVariable Long id) {
 		ACTIVIDAD ACTIVIDAD = actividadrepositorio.findById(id)
 				.orElseThrow(() -> new noexcepcion("No existe" + id));
@@ -51,8 +51,8 @@ public class actividadcontrolador {
 	}
 	
 	
-	@PutMapping("/ACTIVIDAD/{id}")
-	public ResponseEntity<ACTIVIDAD> updateACTIVIDADe(@PathVariable Long id, @RequestBody ACTIVIDAD ACTIVIDADDetails){
+	@PutMapping("/actividad/{id}")
+	public ResponseEntity<ACTIVIDAD> updateACTIVIDAD(@PathVariable Long id, @RequestBody ACTIVIDAD ACTIVIDADDetails){
 		ACTIVIDAD ACTIVIDAD = actividadrepositorio.findById(id)
 				.orElseThrow(() -> new noexcepcion("No existe" + id));
 		
@@ -69,7 +69,7 @@ public class actividadcontrolador {
 	}
 	
 
-	@DeleteMapping("/ACTIVIDAD/{id}")
+	@DeleteMapping("/actividad/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteACTIVIDAD(@PathVariable Long id){
 		ACTIVIDAD ACTIVIDAD = actividadrepositorio.findById(id)
 				.orElseThrow(() -> new noexcepcion("No existe" + id));
